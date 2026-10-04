@@ -87,6 +87,10 @@ export const AdekShowcase: React.FC = () => {
     }
   }
 
+  const currentStepStartFrame = isPC
+    ? [PC_STEP1_START, PC_STEP2_START, PC_STEP3_START, PC_STEP4_START][currentStep]
+    : [MOBILE_STEP1_START, MOBILE_STEP2_START, MOBILE_STEP3_START, MOBILE_STEP4_START][currentStep];
+
   return (
     <div className="relative w-[1080px] h-[1920px] bg-white overflow-hidden font-sans select-none">
       {/* 1. Vidéo de base de la démonstration */}
@@ -99,7 +103,12 @@ export const AdekShowcase: React.FC = () => {
       {!isOutro && <TopBrandBar />}
 
       {/* 3. Stepper de progression affiché pendant la phase PC */}
-      {!isOutro && isPC && <BottomStepper currentStep={currentStep} />}
+      {!isOutro && isPC && (
+        <BottomStepper
+          currentStep={currentStep}
+          currentStepStartFrame={currentStepStartFrame}
+        />
+      )}
 
       {/* 4. Cartes explicatives ultra-visibles selon la phase */}
       {!isOutro && (

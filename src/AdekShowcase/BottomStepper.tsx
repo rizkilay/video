@@ -15,6 +15,7 @@ import {
 
 export interface BottomStepperProps {
   currentStep: number; // 0, 1, 2, 3
+  currentStepStartFrame: number;
 }
 
 export const steps = [
@@ -24,7 +25,10 @@ export const steps = [
   { id: 3, label: "Sync Cloud", icon: RefreshCw, desc: "Centralisation" },
 ];
 
-export const BottomStepper: React.FC<BottomStepperProps> = ({ currentStep }) => {
+export const BottomStepper: React.FC<BottomStepperProps> = ({
+  currentStep,
+  currentStepStartFrame,
+}) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
@@ -37,6 +41,16 @@ export const BottomStepper: React.FC<BottomStepperProps> = ({ currentStep }) => 
 
   const translateY = interpolate(entrance, [0, 1], [60, 0]);
   const opacity = interpolate(entrance, [0, 1], [0, 1]);
+  const stepSlide = spring({
+    frame: Math.max(0, frame - currentStepStartFrame),
+    fps,
+    config: { damping: 20, mass: 0.7, stiffness: 120 },
+  });
+  const slidePosition = interpolate(
+    stepSlide,
+    [0, 1],
+    [Math.max(0, currentStep - 1), currentStep],
+  );
 
   return (
     <div
@@ -62,21 +76,30 @@ export const BottomStepper: React.FC<BottomStepperProps> = ({ currentStep }) => 
         </div>
 
         {/* 4 Interactive-Style Step Pills */}
-        <div className="flex items-center justify-between gap-2 bg-slate-50/80 p-2 rounded-2xl border border-slate-200/60">
+        <div className="bg-slate-50/80 p-2 rounded-2xl border border-slate-200/60">
+          <div className="relative grid grid-cols-4 gap-2">
+            <div
+              aria-hidden="true"
+              className="absolute inset-y-0 left-0 z-0 rounded-xl bg-gradient-to-r from-blue-700 via-indigo-700 to-blue-800 shadow-xl shadow-blue-700/40 ring-2 ring-blue-300"
+              style={{
+                width: "calc((100% - 24px) / 4)",
+                transform: `translateX(calc(${slidePosition * 100}% + ${slidePosition * 8}px))`,
+              }}
+            />
           {steps.map((step, idx) => {
             const isActive = currentStep === idx;
             const isDone = currentStep > idx;
             const Icon = step.icon;
 
             return (
-              <React.Fragment key={step.id}>
                 <div
-                  className={`flex-1 flex items-center gap-3 px-3.5 py-2.5 rounded-xl transition-all duration-300 ${
+                  key={step.id}
+                  className={`relative z-10 flex min-w-0 items-center gap-3 px-3.5 py-2.5 rounded-xl ${
                     isActive
-                      ? "bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white shadow-lg shadow-blue-600/30 scale-[1.02]"
+                      ? "text-white"
                       : isDone
-                      ? "bg-blue-50/90 text-blue-900 border border-blue-200/60 font-semibold"
-                      : "text-gray-500 font-medium"
+                      ? "bg-blue-100 text-blue-950 border border-blue-300 font-bold"
+                      : "text-gray-600 font-semibold"
                   }`}
                 >
                   {/* Step Icon Badge */}
@@ -118,18 +141,9 @@ export const BottomStepper: React.FC<BottomStepperProps> = ({ currentStep }) => 
                     </p>
                   </div>
                 </div>
-
-                {/* Divider Line Between Steps */}
-                {idx < steps.length - 1 && (
-                  <div
-                    className={`h-6 w-[2px] rounded-full shrink-0 transition-colors duration-300 ${
-                      isDone ? "bg-blue-400" : "bg-gray-200"
-                    }`}
-                  />
-                )}
-              </React.Fragment>
             );
           })}
+          </div>
         </div>
       </div>
     </div>
