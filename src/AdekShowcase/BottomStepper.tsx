@@ -39,8 +39,13 @@ export const BottomStepper: React.FC<BottomStepperProps> = ({
     config: { damping: 15, mass: 0.7, stiffness: 100 },
   });
 
-  const translateY = interpolate(entrance, [0, 1], [60, 0]);
   const opacity = interpolate(entrance, [0, 1], [0, 1]);
+  const bottomPosition = interpolate(
+    frame,
+    [360, 390],
+    [200, 32],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
+  );
   const stepSlide = spring({
     frame: Math.max(0, frame - currentStepStartFrame),
     fps,
@@ -55,10 +60,10 @@ export const BottomStepper: React.FC<BottomStepperProps> = ({
   return (
     <div
       style={{
-        transform: `translateY(${translateY}px)`,
+        bottom: bottomPosition,
         opacity,
       }}
-      className="absolute bottom-8 left-[60px] z-40 w-[960px] pointer-events-none select-none"
+      className="absolute left-[60px] z-40 w-[960px] pointer-events-none select-none"
     >
       <div className="bg-white/92 backdrop-blur-2xl rounded-3xl shadow-[0_20px_50px_rgba(15,23,42,0.22)] border border-white/80 p-3.5 flex flex-col gap-2.5">
         {/* Top Mini Bar with Progress Text */}
