@@ -212,14 +212,20 @@ export const AdekShowcase: React.FC = () => {
           </Sequence>
 
           {/* Interrupteur 'Marquer comme perte' sur PC */}
-          <Sequence from={275} durationInFrames={55}>
+          <Sequence
+            from={275}
+            durationInFrames={55}
+            style={{
+              translate: "-310.2px 147.8px"
+            }}
+          >
             <HighlightPointer
               x={525}
               y={425}
               label="Marquer comme perte"
               sublabel="Déstockage autorisé"
               color="rose"
-              tooltipPosition="right"
+              tooltipPosition="left"
             />
           </Sequence>
 
