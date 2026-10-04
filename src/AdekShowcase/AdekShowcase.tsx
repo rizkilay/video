@@ -243,7 +243,13 @@ export const AdekShowcase: React.FC = () => {
           {/* --- POINTEURS PHASE MOBILE --- */}
 
           {/* Clic 'Vendre' sur le tableau de bord mobile */}
-          <Sequence from={650} durationInFrames={45}>
+          <Sequence
+            from={650}
+            durationInFrames={45}
+            style={{
+              translate: "70.4px -101.2px"
+            }}
+          >
             <HighlightPointer
               x={840}
               y={1640}
