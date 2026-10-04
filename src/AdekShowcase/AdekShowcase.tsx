@@ -98,13 +98,8 @@ export const AdekShowcase: React.FC = () => {
       {/* 2. Top Header minimaliste & élégant */}
       {!isOutro && <TopBrandBar />}
 
-      {/* 3. Stepper de progression situé EN BAS, visible sur PC et Mobile */}
-      {!isOutro && (
-        <BottomStepper
-          currentStep={currentStep}
-          platform={isPC ? "pc" : "mobile"}
-        />
-      )}
+      {/* 3. Stepper de progression affiché pendant la phase PC */}
+      {!isOutro && isPC && <BottomStepper currentStep={currentStep} />}
 
       {/* 4. Cartes explicatives ultra-visibles selon la phase */}
       {!isOutro && (
@@ -199,14 +194,20 @@ export const AdekShowcase: React.FC = () => {
           </Sequence>
 
           {/* Réduire le prix ou la quantité dans la modale PC */}
-          <Sequence from={180} durationInFrames={60}>
+          <Sequence
+            from={180}
+            durationInFrames={60}
+            style={{
+              translate: "-260.9px 243.2px"
+            }}
+          >
             <HighlightPointer
               x={470}
               y={250}
               label="Réduire le prix ou la quantité"
               sublabel="Ajustement direct en direct"
               color="indigo"
-              tooltipPosition="right"
+              tooltipPosition="left"
             />
           </Sequence>
 

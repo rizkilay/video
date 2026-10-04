@@ -11,13 +11,10 @@ import {
   CreditCard,
   ReceiptText,
   RefreshCw,
-  Monitor,
-  Smartphone,
 } from "lucide-react";
 
 export interface BottomStepperProps {
   currentStep: number; // 0, 1, 2, 3
-  platform: "pc" | "mobile";
 }
 
 export const steps = [
@@ -27,10 +24,7 @@ export const steps = [
   { id: 3, label: "Sync Cloud", icon: RefreshCw, desc: "Centralisation" },
 ];
 
-export const BottomStepper: React.FC<BottomStepperProps> = ({
-  currentStep,
-  platform,
-}) => {
+export const BottomStepper: React.FC<BottomStepperProps> = ({ currentStep }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
@@ -53,29 +47,9 @@ export const BottomStepper: React.FC<BottomStepperProps> = ({
       className="absolute bottom-8 left-[60px] z-40 w-[960px] pointer-events-none select-none"
     >
       <div className="bg-white/92 backdrop-blur-2xl rounded-3xl shadow-[0_20px_50px_rgba(15,23,42,0.22)] border border-white/80 p-3.5 flex flex-col gap-2.5">
-        {/* Top Mini Bar with Platform Indicator & Progress Text */}
+        {/* Top Mini Bar with Progress Text */}
         <div className="flex items-center justify-between px-3">
           <div className="flex items-center gap-2">
-            <span
-              className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black tracking-wide uppercase transition-colors duration-300 ${
-                platform === "pc"
-                  ? "bg-blue-100 text-blue-800 border border-blue-200"
-                  : "bg-indigo-100 text-indigo-800 border border-indigo-200"
-              }`}
-            >
-              {platform === "pc" ? (
-                <>
-                  <Monitor size={14} className="stroke-[2.5]" />
-                  <span>Version Ordinateur • Caisse</span>
-                </>
-              ) : (
-                <>
-                  <Smartphone size={14} className="stroke-[2.5]" />
-                  <span>Version Mobile • Smartphone</span>
-                </>
-              )}
-            </span>
-
             <span className="text-[12px] font-bold text-gray-500">
               Étape {currentStep + 1} sur {steps.length}
             </span>
