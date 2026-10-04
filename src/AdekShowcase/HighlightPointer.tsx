@@ -1,4 +1,5 @@
-import { spring, useCurrentFrame, useVideoConfig } from "remotion";
+import React from "react";
+import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 
 interface HighlightPointerProps {
   x: number;
@@ -6,8 +7,9 @@ interface HighlightPointerProps {
   label: string;
   sublabel?: string;
   delay?: number;
-  color?: "blue" | "emerald" | "amber" | "rose";
+  color?: "blue" | "emerald" | "amber" | "rose" | "purple" | "indigo";
   tooltipPosition?: "top" | "bottom" | "left" | "right";
+  icon?: React.ReactNode;
 }
 
 export const HighlightPointer: React.FC<HighlightPointerProps> = ({
@@ -18,43 +20,64 @@ export const HighlightPointer: React.FC<HighlightPointerProps> = ({
   delay = 0,
   color = "blue",
   tooltipPosition = "right",
+  icon,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
   const adjustedFrame = Math.max(0, frame - delay);
-  const scaleSpring = spring({
+  const entrance = spring({
     frame: adjustedFrame,
     fps,
-    config: { damping: 12, mass: 0.6 },
+    config: { damping: 14, mass: 0.6, stiffness: 120 },
   });
 
-  const pulse = Math.sin(frame / 5) * 0.15 + 1;
+  const scale = interpolate(entrance, [0, 1], [0.4, 1]);
+  const opacity = interpolate(entrance, [0, 1], [0, 1]);
+  const pulse = Math.sin(frame / 6) * 0.12 + 1;
 
-  const colorStyles = {
+  const colorMap = {
     blue: {
       bg: "bg-blue-600",
       ring: "border-blue-400",
-      text: "text-blue-600",
-      badge: "bg-blue-600 text-white",
+      glow: "shadow-blue-500/40",
+      accent: "text-blue-400",
+      border: "border-blue-500/30",
     },
     emerald: {
       bg: "bg-emerald-600",
       ring: "border-emerald-400",
-      text: "text-emerald-600",
-      badge: "bg-emerald-600 text-white",
+      glow: "shadow-emerald-500/40",
+      accent: "text-emerald-400",
+      border: "border-emerald-500/30",
     },
     amber: {
       bg: "bg-amber-500",
       ring: "border-amber-400",
-      text: "text-amber-600",
-      badge: "bg-amber-600 text-white",
+      glow: "shadow-amber-500/40",
+      accent: "text-amber-400",
+      border: "border-amber-500/30",
     },
     rose: {
       bg: "bg-rose-600",
       ring: "border-rose-400",
-      text: "text-rose-600",
-      badge: "bg-rose-600 text-white",
+      glow: "shadow-rose-500/40",
+      accent: "text-rose-400",
+      border: "border-rose-500/30",
+    },
+    purple: {
+      bg: "bg-purple-600",
+      ring: "border-purple-400",
+      glow: "shadow-purple-500/40",
+      accent: "text-purple-400",
+      border: "border-purple-500/30",
+    },
+    indigo: {
+      bg: "bg-indigo-600",
+      ring: "border-indigo-400",
+      glow: "shadow-indigo-500/40",
+      accent: "text-indigo-400",
+      border: "border-indigo-500/30",
     },
   }[color];
 
@@ -71,30 +94,49 @@ export const HighlightPointer: React.FC<HighlightPointerProps> = ({
         position: "absolute",
         left: `${x}px`,
         top: `${y}px`,
-        transform: `translate(-50%, -50%) scale(${scaleSpring})`,
-        zIndex: 40,
+        transform: `translate(-50%, -50%) scale(${scale})`,
+        opacity,
+        zIndex: 50,
         pointerEvents: "none",
       }}
-      className={`flex ${positionClasses} gap-2.5`}
+      className={`flex ${positionClasses} gap-3 select-none`}
     >
-      {/* Animated target dot with ripple */}
-      <div className="relative flex items-center justify-center">
+      {/* Target Reticle with Double Pulse Rings */}
+      <div className="relative flex items-center justify-center shrink-0">
+        {/* Outer expanding ping ring */}
         <div
-          style={{ transform: `scale(${pulse * 1.6})` }}
-          className={`absolute w-8 h-8 rounded-full border-2 ${colorStyles.ring} opacity-75 animate-ping`}
+          style={{ transform: `scale(${pulse * 1.8})` }}
+          className={`absolute w-10 h-10 rounded-full border-2 ${colorMap.ring} opacity-80 animate-ping`}
         />
+        {/* Middle breathing ring */}
+        <div
+          style={{ transform: `scale(${pulse * 1.3})` }}
+          className={`absolute w-8 h-8 rounded-full border border-white/60 bg-white/20 backdrop-blur-sm`}
+        />
+        {/* Center Target Dot */}
         <div
           style={{ transform: `scale(${pulse})` }}
-          className={`w-5 h-5 rounded-full ${colorStyles.bg} shadow-lg shadow-black/30 border-2 border-white`}
-        />
+          className={`w-5 h-5 rounded-full ${colorMap.bg} shadow-lg ${colorMap.glow} border-2 border-white flex items-center justify-center`}
+        >
+          <div className="w-1.5 h-1.5 rounded-full bg-white" />
+        </div>
       </div>
 
-      {/* Floating tooltip badge */}
-      <div className="bg-gray-900/90 backdrop-blur-md text-white px-3.5 py-1.5 rounded-xl shadow-2xl border border-white/20 whitespace-nowrap text-center">
-        <p className="text-xs font-bold leading-tight">{label}</p>
-        {sublabel && (
-          <p className="text-[10px] text-gray-300 font-medium">{sublabel}</p>
-        )}
+      {/* Tooltip Card */}
+      <div
+        className={`bg-gray-950/90 backdrop-blur-xl text-white px-4 py-2 rounded-2xl shadow-[0_15px_35px_rgba(0,0,0,0.4)] border ${colorMap.border} whitespace-nowrap flex items-center gap-2.5`}
+      >
+        {icon && <div className={`${colorMap.accent}`}>{icon}</div>}
+        <div className="text-left">
+          <p className="text-xs font-black tracking-tight leading-snug">
+            {label}
+          </p>
+          {sublabel && (
+            <p className="text-[11px] text-gray-300 font-medium leading-snug">
+              {sublabel}
+            </p>
+          )}
+        </div>
       </div>
     </div>
   );
