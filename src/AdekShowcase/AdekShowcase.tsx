@@ -224,7 +224,7 @@ export const AdekShowcase: React.FC = () => {
               label="Valider la vente"
               sublabel="Enregistrement immédiat"
               color="emerald"
-              tooltipPosition="top"
+              tooltipPosition="bottom"
             />
           </Sequence>
 
