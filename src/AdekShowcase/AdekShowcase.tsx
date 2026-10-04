@@ -123,15 +123,6 @@ export const AdekShowcase: React.FC = () => {
             <PCStep3Content duration={PC_STEP3_DURATION} />
           </Sequence>
 
-          <Sequence
-            from={PC_STEP4_START}
-            durationInFrames={PC_STEP4_DURATION}
-            style={{
-              translate: "87.6px 289.6px"
-            }}
-          >
-            <PCStep4Content duration={PC_STEP4_DURATION} />
-          </Sequence>
 
           {/* --- DEMO MOBILE (Positionnées en haut AU-DESSUS du smartphone) --- */}
           <Sequence
