@@ -217,7 +217,13 @@ export const AdekShowcase: React.FC = () => {
           </Sequence>
 
           {/* Clic 'Valider' sur PC */}
-          <Sequence from={340} durationInFrames={50}>
+          <Sequence
+            from={340}
+            durationInFrames={50}
+            style={{
+              translate: "184.3px 43.2px"
+            }}
+          >
             <HighlightPointer
               x={420}
               y={555}
