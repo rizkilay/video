@@ -114,7 +114,19 @@ export const AdekShowcase: React.FC = () => {
       {!isOutro && (
         <>
           {/* --- DEMO PC (Positionnées en bas sous l'ordinateur) --- */}
+          <Sequence
+            from={PC_STEP1_START}
+            durationInFrames={PC_STEP1_DURATION}
+            style={{
+              translate: "-720px -133px"
+            }}
+          >
+            <PCStep1Content duration={PC_STEP1_DURATION} />
+          </Sequence>
 
+          <Sequence from={PC_STEP2_START} durationInFrames={PC_STEP2_DURATION}>
+            <PCStep2Content duration={PC_STEP2_DURATION} />
+          </Sequence>
 
           <Sequence from={PC_STEP3_START} durationInFrames={PC_STEP3_DURATION}>
             <PCStep3Content duration={PC_STEP3_DURATION} />
