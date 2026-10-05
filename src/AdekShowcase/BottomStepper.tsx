@@ -19,10 +19,9 @@ export interface BottomStepperProps {
 }
 
 export const steps = [
-  { id: 0, label: "Sélection", icon: ShoppingBag, desc: "Articles & Panier" },
-  { id: 1, label: "Crédit & Perte", icon: CreditCard, desc: "Prix & Modes" },
-  { id: 2, label: "Factures", icon: ReceiptText, desc: "Reçus & Actions" },
-  { id: 3, label: "Sync Cloud", icon: RefreshCw, desc: "Centralisation" },
+  { id: 0, label: "Sélectionner", icon: ShoppingBag, desc: "Articles & Panier" },
+  { id: 1, label: "Éditer", icon: CreditCard, desc: "Prix & Quantités" },
+  { id: 2, label: "Imprimer", icon: ReceiptText, desc: "Reçus & Factures" },
 ];
 
 export const BottomStepper: React.FC<BottomStepperProps> = ({
@@ -46,6 +45,8 @@ export const BottomStepper: React.FC<BottomStepperProps> = ({
     [200, 32],
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
   );
+  const clampedStep = Math.min(currentStep, steps.length - 1);
+
   const stepSlide = spring({
     frame: Math.max(0, frame - currentStepStartFrame),
     fps,
@@ -54,7 +55,7 @@ export const BottomStepper: React.FC<BottomStepperProps> = ({
   const slidePosition = interpolate(
     stepSlide,
     [0, 1],
-    [Math.max(0, currentStep - 1), currentStep],
+    [Math.max(0, clampedStep - 1), clampedStep],
   );
 
   return (
@@ -70,7 +71,7 @@ export const BottomStepper: React.FC<BottomStepperProps> = ({
         <div className="flex items-center justify-between px-3">
           <div className="flex items-center gap-2">
             <span className="text-[12px] font-bold text-gray-500">
-              Étape {currentStep + 1} sur {steps.length}
+              Étape {clampedStep + 1} sur {steps.length}
             </span>
           </div>
 
@@ -82,18 +83,18 @@ export const BottomStepper: React.FC<BottomStepperProps> = ({
 
         {/* 4 Interactive-Style Step Pills */}
         <div className="bg-slate-50/80 p-2 rounded-2xl border border-slate-200/60">
-          <div className="relative grid grid-cols-4 gap-2">
+          <div className="relative grid grid-cols-3 gap-2">
             <div
               aria-hidden="true"
               className="absolute inset-y-0 left-0 z-0 rounded-xl bg-gradient-to-r from-blue-700 via-indigo-700 to-blue-800 shadow-xl shadow-blue-700/40 ring-2 ring-blue-300"
               style={{
-                width: "calc((100% - 24px) / 4)",
+                width: "calc((100% - 16px) / 3)",
                 transform: `translateX(calc(${slidePosition * 100}% + ${slidePosition * 8}px))`,
               }}
             />
           {steps.map((step, idx) => {
-            const isActive = currentStep === idx;
-            const isDone = currentStep > idx;
+            const isActive = clampedStep === idx;
+            const isDone = clampedStep > idx;
             const Icon = step.icon;
 
             return (
@@ -127,14 +128,14 @@ export const BottomStepper: React.FC<BottomStepperProps> = ({
                   {/* Step Text */}
                   <div className="min-w-0 flex-1">
                     <p
-                      className={`text-xs font-black truncate leading-tight ${
+                      className={`text-xl font-black truncate leading-tight ${
                         isActive ? "text-white" : isDone ? "text-blue-950" : "text-gray-700"
                       }`}
                     >
                       {step.label}
                     </p>
                     <p
-                      className={`text-[10px] truncate leading-tight ${
+                      className={`text-lg truncate leading-tight ${
                         isActive
                           ? "text-blue-100 font-medium"
                           : isDone
