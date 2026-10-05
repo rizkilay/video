@@ -104,54 +104,7 @@ export const AnimatedCard: React.FC<{ children: React.ReactNode; side?: string; 
 // =========================================================================
 
 // PC Step 1: Sélection des produits (0 - 140 frames)
-export const PCStep1Content: React.FC<{ duration: number }> = ({ duration }) => {
-  return (
-    <AnimatedStepWrapper durationInFrames={duration} position="pc-bottom">
-      <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-2.5">
-          <span className="px-3 py-1 text-xs font-black uppercase tracking-wider text-blue-800 bg-blue-100 rounded-full border border-blue-200">
-            Version PC • Étape 01
-          </span>
-          <span className="flex items-center gap-1.5 text-xs font-bold text-gray-500">
-            <Monitor size={14} className="text-blue-600" /> Caisse Comptoir
-          </span>
-        </div>
-        <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200 flex items-center gap-1">
-          <Sparkles size={13} /> Ajout Instantané
-        </span>
-      </div>
 
-      <h2 className="text-2xl font-black text-gray-900 tracking-tight mb-2">
-        Sélection des Produits & Panier en direct
-      </h2>
-      <p className="text-sm text-gray-600 leading-relaxed mb-5">
-        Sur ordinateur, cliquez sur vos articles (tactile ou souris) ou scannez au code-barres. Le panier s'alimente en temps réel avec le calcul automatique du montant total.
-      </p>
-
-      <div className="grid grid-cols-2 gap-4">
-        <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-blue-50/70 border border-blue-100">
-          <div className="p-2.5 rounded-xl bg-blue-600 text-white shadow-md shadow-blue-500/30">
-            <ShoppingBag size={18} />
-          </div>
-          <div>
-            <p className="text-sm font-bold text-gray-900">Panier dynamique</p>
-            <p className="text-xs text-gray-500">Type-c, V8, Iphone ajoutés</p>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-emerald-50/80 border border-emerald-200">
-          <div className="p-2.5 rounded-xl bg-emerald-600 text-white shadow-md shadow-emerald-500/30">
-            <Check size={18} className="stroke-[3]" />
-          </div>
-          <div>
-            <p className="text-sm font-bold text-emerald-950">Total automatique</p>
-            <p className="text-xs text-emerald-700 font-semibold">Montant initial : 6 000 FCFA</p>
-          </div>
-        </div>
-      </div>
-    </AnimatedStepWrapper>
-  );
-};
 
 // PC Step 2: Détails du reçu & Réduction prix/quantité (140 - 270 frames)
 export const PCStep2Content: React.FC<{ duration: number }> = ({ duration }) => {

@@ -104,21 +104,21 @@ export const HighlightPointer: React.FC<HighlightPointerProps> = ({
       {/* Target Reticle with Double Pulse Rings */}
       <div className="relative flex items-center justify-center shrink-0">
         {/* Outer expanding ping ring */}
-        <div
-          style={{ transform: `scale(${pulse * 1.9})` }}
+                <div
+          style={{ transform: `scale(${pulse * 1.6})` }}
           className={`absolute w-16 h-16 rounded-full border-[3px] ${colorMap.ring} opacity-80 animate-ping`}
         />
         {/* Middle breathing ring */}
         <div
-          style={{ transform: `scale(${pulse * 1.35})` }}
-          className={`absolute w-12 h-12 rounded-full border-2 border-white/70 bg-white/25 backdrop-blur-md`}
+          style={{ transform: `scale(${pulse * 1.3})` }}
+          className={`absolute w-16 h-16 rounded-full border-2 border-white/80 bg-white/30 backdrop-blur-lg`}
         />
         {/* Center Target Dot */}
         <div
           style={{ transform: `scale(${pulse})` }}
-          className={`w-8 h-8 rounded-full ${colorMap.bg} shadow-2xl ${colorMap.glow} border-[3px] border-white flex items-center justify-center`}
+          className={`w-12 h-12 rounded-full ${colorMap.bg} shadow-2xl ${colorMap.glow} border-[4px] border-white flex items-center justify-center`}
         >
-          <div className="w-2.5 h-2.5 rounded-full bg-white shadow-sm" />
+          <div className="w-3.5 h-3.5 rounded-full bg-white shadow-sm" />
         </div>
       </div>
 
@@ -128,11 +128,11 @@ export const HighlightPointer: React.FC<HighlightPointerProps> = ({
       >
         {icon && <div className={`${colorMap.accent} text-xl`}>{icon}</div>}
         <div className="text-left">
-          <p className="text-xl font-black tracking-tight leading-snug text-white">
+          <p className="text-3xl font-black tracking-tight leading-snug text-white">
             {label}
           </p>
           {sublabel && (
-            <p className="text-base text-gray-200 font-semibold leading-snug mt-0.5">
+            <p className="text-2xl text-gray-200 font-semibold leading-snug mt-0.5">
               {sublabel}
             </p>
           )}

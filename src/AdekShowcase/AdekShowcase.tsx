@@ -5,10 +5,8 @@ import {
   Sequence,
   useCurrentFrame,
 } from "remotion";
-import { TopBrandBar } from "./TopBrandBar";
 import { BottomStepper } from "./BottomStepper";
 import {
-  PCStep1Content,
   PCStep2Content,
   PCStep3Content,
   PCStep4Content,
@@ -100,7 +98,7 @@ export const AdekShowcase: React.FC = () => {
       />
 
       {/* 2. Top Header minimaliste & élégant */}
-      {!isOutro && <TopBrandBar />}
+      
 
       {/* 3. Stepper de progression affiché pendant la phase PC */}
       {!isOutro && isPC && (
@@ -114,15 +112,7 @@ export const AdekShowcase: React.FC = () => {
       {!isOutro && (
         <>
           {/* --- DEMO PC (Positionnées en bas sous l'ordinateur) --- */}
-          <Sequence
-            from={PC_STEP1_START}
-            durationInFrames={PC_STEP1_DURATION}
-            style={{
-              translate: "-720px -133px"
-            }}
-          >
-            <PCStep1Content duration={PC_STEP1_DURATION} />
-          </Sequence>
+
 
           <Sequence from={PC_STEP2_START} durationInFrames={PC_STEP2_DURATION}>
             <PCStep2Content duration={PC_STEP2_DURATION} />
@@ -173,11 +163,11 @@ export const AdekShowcase: React.FC = () => {
           <Sequence from={130} durationInFrames={45}>
             <HighlightPointer
               x={910}
-              y={375}
+              y={625}
               label="Bouton Détails"
               sublabel="Ouvrir la commande"
               color="purple"
-              tooltipPosition="left"
+              tooltipPosition="bottom"
             />
           </Sequence>
 
@@ -190,7 +180,7 @@ export const AdekShowcase: React.FC = () => {
             }}
           >
             <HighlightPointer
-              x={470}
+              x={530}
               y={250}
               label="Réduire le prix ou la quantité"
               sublabel="Ajustement direct en direct"
@@ -247,9 +237,9 @@ export const AdekShowcase: React.FC = () => {
           >
             <HighlightPointer
               x={840}
-              y={1640}
+              y={1590}
               label="Bouton Vendre"
-              sublabel="Ouvrir la caisse mobile"
+              sublabel="Afficher les produits"
               color="blue"
               tooltipPosition="top"
             />
@@ -266,7 +256,7 @@ export const AdekShowcase: React.FC = () => {
           >
             <HighlightPointer
               x={865}
-              y={850}
+              y={800}
               label="Encaisser"
               sublabel="Total : 13 000 FCFA"
               color="emerald"
@@ -283,7 +273,7 @@ export const AdekShowcase: React.FC = () => {
             }}
           >
             <HighlightPointer
-              x={420}
+              x={320}
               y={1160}
               label="À payer (Crédit)"
               sublabel="Suivi de dette client"
@@ -301,7 +291,7 @@ export const AdekShowcase: React.FC = () => {
             }}
           >
             <HighlightPointer
-              x={570}
+              x={470}
               y={1750}
               label="Bouton Échanger"
               sublabel="Remplacement immédiat"
@@ -320,8 +310,8 @@ export const AdekShowcase: React.FC = () => {
             }}
           >
             <HighlightPointer
-              x={690}
-              y={1245}
+              x={670}
+              y={1195}
               label="Synchroniser en 1 clic"
               sublabel="Ventes, cotisations & dépenses"
               color="emerald"
