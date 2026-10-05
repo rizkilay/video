@@ -124,7 +124,7 @@ export const AnimatedStepWrapper: React.FC<StepCardWrapperProps> = ({
       className="absolute w-[800px] z-30 pointer-events-none select-none"
     >
       <div 
-        className="bg-[#FCF9F2] p-8 rounded-[40px] border-[6px] border-slate-900 shadow-[16px_20px_0px_0px_rgba(15,23,42,1)]"
+        className="bg-[#FCF9F2] p-8 rounded-[40px] border-[6px] border-slate-900 shadow-[0_8px_24px_rgba(15,23,42,0.12)]"
         style={{ transform: "rotate(-1.5deg)" }}
       >
         {children}
@@ -318,7 +318,7 @@ export const MobileStep4Content: React.FC<{ duration: number }> = ({ duration })
         <CardIconBlock>
           <div className="flex flex-col items-center gap-4 text-teal-700">
             <RefreshCw size={120} strokeWidth={2.5} className="animate-spin" style={{ animationDuration: '3s' }} />
-            <div className="flex items-center gap-3 bg-white border-4 border-teal-900 px-6 py-2 rounded-2xl shadow-[4px_6px_0px_0px_rgba(13,116,104,1)]">
+            <div className="flex items-center gap-3 bg-white border-4 border-teal-900 px-6 py-2 rounded-2xl shadow-sm">
               <Database size={28} />
               <span className="font-black text-2xl">Cloud Sync</span>
             </div>
