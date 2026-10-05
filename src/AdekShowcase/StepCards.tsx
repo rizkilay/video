@@ -244,9 +244,9 @@ export const MobileStep1Content: React.FC<{ duration: number }> = ({ duration })
       <StaggerItem delayInFrames={4} direction="pop">
         <CardIconBlock>
           <div className="flex gap-8 items-center text-blue-700">
+            <Monitor size={100} strokeWidth={2.5} />
+            <CloudDownload size={50} strokeWidth={4} />
             <Smartphone size={100} strokeWidth={2.5} />
-            <ArrowRight size={50} strokeWidth={4} />
-            <ShoppingBag size={100} strokeWidth={2.5} />
           </div>
         </CardIconBlock>
       </StaggerItem>
