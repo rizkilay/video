@@ -18,6 +18,8 @@ import {
   Check,
   Database,
   ArrowRight,
+  Monitor,
+  CloudDownload,
 } from "lucide-react";
 
 interface StepCardWrapperProps {
@@ -249,11 +251,11 @@ export const MobileStep1Content: React.FC<{ duration: number }> = ({ duration })
         </CardIconBlock>
       </StaggerItem>
       <StaggerItem delayInFrames={8} direction="up">
-        <CardTitle>Caisse Mobile Tactile</CardTitle>
+        <CardTitle>Récupération de Produit</CardTitle>
       </StaggerItem>
       <StaggerItem delayInFrames={12} direction="up">
         <CardSubtitle>
-          Sélectionnez et encaissez vos articles très rapidement du bout des doigts.
+          Retrouvez et ajoutez vos produits instantanément sur la caisse mobile.
         </CardSubtitle>
       </StaggerItem>
     </AnimatedStepWrapper>

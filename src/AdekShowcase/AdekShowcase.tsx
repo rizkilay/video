@@ -126,12 +126,25 @@ export const AdekShowcase: React.FC = () => {
           {/* --- DEMO MOBILE (Positionnées en haut AU-DESSUS du smartphone) --- */}
 
           <Sequence
+            from={MOBILE_STEP1_START}
+            durationInFrames={MOBILE_STEP1_DURATION}
+          >
+            <MobileStep1Content duration={MOBILE_STEP1_DURATION} />
+          </Sequence>
+
+          <Sequence
             from={MOBILE_STEP2_START}
             durationInFrames={MOBILE_STEP2_DURATION}
           >
             <MobileStep2Content duration={MOBILE_STEP2_DURATION} />
           </Sequence>
 
+          <Sequence
+            from={MOBILE_STEP3_START}
+            durationInFrames={MOBILE_STEP3_DURATION}
+          >
+            <MobileStep3Content duration={MOBILE_STEP3_DURATION} />
+          </Sequence>
 
           <Sequence
             from={MOBILE_STEP4_START}
