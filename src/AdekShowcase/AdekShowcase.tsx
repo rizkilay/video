@@ -96,7 +96,7 @@ export const AdekShowcase: React.FC = () => {
       {/* 1. Vidéo de base de la démonstration */}
       <Video
         src={staticFile("demo.mp4")}
-        className="w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover"
       />
 
       {/* 2. Top Header minimaliste & élégant */}
@@ -114,19 +114,7 @@ export const AdekShowcase: React.FC = () => {
       {!isOutro && (
         <>
           {/* --- DEMO PC (Positionnées en bas sous l'ordinateur) --- */}
-          <Sequence
-            from={PC_STEP1_START}
-            durationInFrames={PC_STEP1_DURATION}
-            style={{
-              translate: "-720px -133px"
-            }}
-          >
-            <PCStep1Content duration={PC_STEP1_DURATION} />
-          </Sequence>
 
-          <Sequence from={PC_STEP2_START} durationInFrames={PC_STEP2_DURATION}>
-            <PCStep2Content duration={PC_STEP2_DURATION} />
-          </Sequence>
 
           <Sequence from={PC_STEP3_START} durationInFrames={PC_STEP3_DURATION}>
             <PCStep3Content duration={PC_STEP3_DURATION} />
@@ -158,7 +146,7 @@ export const AdekShowcase: React.FC = () => {
           {/* --- POINTEURS PHASE PC --- */}
 
           {/* Clic sur un article pour l'ajouter au panier PC */}
-          <Sequence from={45} durationInFrames={50}>
+          <Sequence from={45} durationInFrames={38}>
             <HighlightPointer
               x={340}
               y={470}

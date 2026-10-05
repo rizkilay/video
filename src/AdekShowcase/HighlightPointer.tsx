@@ -99,40 +99,40 @@ export const HighlightPointer: React.FC<HighlightPointerProps> = ({
         zIndex: 50,
         pointerEvents: "none",
       }}
-      className={`flex ${positionClasses} gap-3 select-none`}
+      className={`flex ${positionClasses} gap-4 select-none`}
     >
       {/* Target Reticle with Double Pulse Rings */}
       <div className="relative flex items-center justify-center shrink-0">
         {/* Outer expanding ping ring */}
         <div
-          style={{ transform: `scale(${pulse * 1.8})` }}
-          className={`absolute w-10 h-10 rounded-full border-2 ${colorMap.ring} opacity-80 animate-ping`}
+          style={{ transform: `scale(${pulse * 1.9})` }}
+          className={`absolute w-16 h-16 rounded-full border-[3px] ${colorMap.ring} opacity-80 animate-ping`}
         />
         {/* Middle breathing ring */}
         <div
-          style={{ transform: `scale(${pulse * 1.3})` }}
-          className={`absolute w-8 h-8 rounded-full border border-white/60 bg-white/20 backdrop-blur-sm`}
+          style={{ transform: `scale(${pulse * 1.35})` }}
+          className={`absolute w-12 h-12 rounded-full border-2 border-white/70 bg-white/25 backdrop-blur-md`}
         />
         {/* Center Target Dot */}
         <div
           style={{ transform: `scale(${pulse})` }}
-          className={`w-5 h-5 rounded-full ${colorMap.bg} shadow-lg ${colorMap.glow} border-2 border-white flex items-center justify-center`}
+          className={`w-8 h-8 rounded-full ${colorMap.bg} shadow-2xl ${colorMap.glow} border-[3px] border-white flex items-center justify-center`}
         >
-          <div className="w-1.5 h-1.5 rounded-full bg-white" />
+          <div className="w-2.5 h-2.5 rounded-full bg-white shadow-sm" />
         </div>
       </div>
 
       {/* Tooltip Card */}
       <div
-        className={`bg-gray-950/90 backdrop-blur-xl text-white px-4 py-2 rounded-2xl shadow-[0_15px_35px_rgba(0,0,0,0.4)] border ${colorMap.border} whitespace-nowrap flex items-center gap-2.5`}
+        className={`bg-slate-950/95 backdrop-blur-2xl text-white px-6 py-3.5 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.55)] border-2 ${colorMap.border} whitespace-nowrap flex items-center gap-3.5`}
       >
-        {icon && <div className={`${colorMap.accent}`}>{icon}</div>}
+        {icon && <div className={`${colorMap.accent} text-xl`}>{icon}</div>}
         <div className="text-left">
-          <p className="text-xs font-black tracking-tight leading-snug">
+          <p className="text-xl font-black tracking-tight leading-snug text-white">
             {label}
           </p>
           {sublabel && (
-            <p className="text-[11px] text-gray-300 font-medium leading-snug">
+            <p className="text-base text-gray-200 font-semibold leading-snug mt-0.5">
               {sublabel}
             </p>
           )}
