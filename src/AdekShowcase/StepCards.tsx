@@ -200,11 +200,11 @@ export const PCStep3Content: React.FC<{ duration: number }> = ({ duration }) => 
         </CardIconBlock>
       </StaggerItem>
       <StaggerItem delayInFrames={8} direction="up">
-        <CardTitle>Pertes & Crédit</CardTitle>
+        <CardTitle>Pertes & Ventes à Crédit</CardTitle>
       </StaggerItem>
       <StaggerItem delayInFrames={12} direction="up">
         <CardSubtitle>
-          Déstockez vos articles endommagés ou enregistrez facilement une vente à crédit.
+          Enregistrez vos produits perdus ou endommagés, et gérez facilement vos ventes à crédit.
         </CardSubtitle>
       </StaggerItem>
     </AnimatedStepWrapper>
@@ -251,11 +251,11 @@ export const MobileStep1Content: React.FC<{ duration: number }> = ({ duration })
         </CardIconBlock>
       </StaggerItem>
       <StaggerItem delayInFrames={8} direction="up">
-        <CardTitle>Récupération de Produit</CardTitle>
+        <CardTitle>Passage au mobile</CardTitle>
       </StaggerItem>
       <StaggerItem delayInFrames={12} direction="up">
         <CardSubtitle>
-          Retrouvez et ajoutez vos produits instantanément sur la caisse mobile.
+          Retrouvez vos produits et continuez votre activité directement depuis votre mobile.
         </CardSubtitle>
       </StaggerItem>
     </AnimatedStepWrapper>
@@ -306,7 +306,7 @@ export const MobileStep3Content: React.FC<{ duration: number }> = ({ duration })
       </StaggerItem>
       <StaggerItem delayInFrames={12} direction="up">
         <CardSubtitle>
-          Retour client ? Modifiez une facture validée avec retour auto en stock.
+          Supprimez ou modifiez une facture déjà validée et remettez automatiquement les produits en stock.
         </CardSubtitle>
       </StaggerItem>
     </AnimatedStepWrapper>
