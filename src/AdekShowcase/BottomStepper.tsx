@@ -140,7 +140,7 @@ export const BottomStepper: React.FC<BottomStepperProps> = ({
                   >
                     <p
                       style={{
-                        fontSize: isDone || isActive ? 22 : 18,
+                        fontSize: isDone || isActive ? 24 : 20,
                         fontWeight: isDone || isActive ? 800 : 600,
                         color: isDone
                           ? COLORS.oliveDark
