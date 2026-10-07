@@ -54,7 +54,7 @@ export const BottomStepper: React.FC<BottomStepperProps> = ({
   const bottomPosition = interpolate(
     frame,
     [360, 390],
-    [200, 32],
+    [200, 8],
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
   );
 
