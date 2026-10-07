@@ -63,9 +63,7 @@ export const AdekShowcase: React.FC = () => {
   // Calcul du step actif pour le stepper
   let currentStep = 0;
   if (isPC) {
-    if (frame >= PC_STEP4_START) {
-      currentStep = 3;
-    } else if (frame >= PC_STEP3_START) {
+    if (frame >= PC_STEP3_START) {
       currentStep = 2;
     } else if (frame >= PC_STEP2_START) {
       currentStep = 1;
@@ -74,9 +72,7 @@ export const AdekShowcase: React.FC = () => {
     }
   } else {
     // Mode Mobile
-    if (frame >= MOBILE_STEP4_START) {
-      currentStep = 3;
-    } else if (frame >= MOBILE_STEP3_START) {
+    if (frame >= MOBILE_STEP3_START) {
       currentStep = 2;
     } else if (frame >= MOBILE_STEP2_START) {
       currentStep = 1;
@@ -86,8 +82,8 @@ export const AdekShowcase: React.FC = () => {
   }
 
   const currentStepStartFrame = isPC
-    ? [PC_STEP1_START, PC_STEP2_START, PC_STEP3_START, PC_STEP4_START][currentStep]
-    : [MOBILE_STEP1_START, MOBILE_STEP2_START, MOBILE_STEP3_START, MOBILE_STEP4_START][currentStep];
+    ? [PC_STEP1_START, PC_STEP2_START, PC_STEP3_START][currentStep]
+    : [MOBILE_STEP1_START, MOBILE_STEP2_START, MOBILE_STEP3_START][currentStep];
 
   return (
     <div className="relative w-[1080px] h-[1920px] bg-white overflow-hidden font-sans select-none">
