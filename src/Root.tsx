@@ -5,12 +5,31 @@ import { Logo } from "./HelloWorld/Logo";
 import { Title } from "./HelloWorld/Title";
 
 import { AdekShowcase } from "./AdekShowcase/AdekShowcase";
+import { EntrepreneurCartoon, SCENE_DURATIONS } from "./EntrepreneurCartoon/EntrepreneurCartoon";
+import { AdekTakbirVideo } from "./AdekTakbir/AdekTakbirVideo";
+import { ADEK_TIMINGS } from "./AdekTakbir/types";
 
 // Each <Composition> is an entry in the sidebar!
 
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      <Composition
+        id="AdekTakbirStory"
+        component={AdekTakbirVideo}
+        durationInFrames={ADEK_TIMINGS.TOTAL_FRAMES}
+        fps={ADEK_TIMINGS.FPS}
+        width={ADEK_TIMINGS.WIDTH}
+        height={ADEK_TIMINGS.HEIGHT}
+      />
+      <Composition
+        id="EntrepreneurCartoon"
+        component={EntrepreneurCartoon}
+        durationInFrames={SCENE_DURATIONS.TOTAL_DURATION}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
       <Composition
         id="AdekShowcase"
         component={AdekShowcase}
@@ -61,7 +80,6 @@ export const RemotionRoot: React.FC = () => {
           titleColor: "#000000",
         }}
       />
-
     </>
   );
 };
