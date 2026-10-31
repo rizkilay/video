@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Img,
+  Loop,
   OffthreadVideo,
   interpolate,
   spring,
@@ -16,6 +17,62 @@ import {
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
+import { ViralCaption, CaptionChunk } from "./ViralCaption";
+
+const SCENE4_CHUNKS: CaptionChunk[] = [
+  {
+    startFrame: 15,
+    endFrame: 110,
+    before: "Tout cela pourrait être",
+    highlight: "évité",
+    after: "facilement",
+  },
+  {
+    startFrame: 110,
+    endFrame: 220,
+    before: "Enregistrer les",
+    highlight: "sorties de produits",
+    after: "avec Adék Solution",
+  },
+  {
+    startFrame: 220,
+    endFrame: 330,
+    before: "Mieux contrôler les",
+    highlight: "mouvements de stock",
+  },
+  {
+    startFrame: 330,
+    endFrame: 440,
+    before: "Enregistrer toutes les",
+    highlight: "pertes de produits",
+  },
+  {
+    startFrame: 440,
+    endFrame: 555,
+    before: "Suivre les ventes à",
+    highlight: "crédit",
+    after: "et clients débiteurs",
+  },
+  {
+    startFrame: 560,
+    endFrame: 650,
+    before: "Avoir une",
+    highlight: "vision claire",
+    after: "de son stock",
+  },
+  {
+    startFrame: 650,
+    endFrame: 740,
+    before: "Limiter les désaccords avec ses",
+    highlight: "employés",
+  },
+  {
+    startFrame: 740,
+    endFrame: 860,
+    before: "Gérer sa boutique en toute",
+    highlight: "sérénité !",
+  },
+];
 
 export const Scene4AdekSolution: React.FC = () => {
   const frame = useCurrentFrame();
@@ -74,24 +131,6 @@ export const Scene4AdekSolution: React.FC = () => {
     config: { damping: 12, mass: 0.6 },
   });
 
-  // Subtitles and section categories
-  let currentSubtitle = "";
-  let currentCategory = "";
-
-  if (frame < 260) {
-    currentSubtitle =
-      "Pourtant, tout cela pourrait être évité juste s’il permettait à ses employés d’enregistrer systématiquement les sorties de produits à l’aide du logiciel Adék Solution.";
-    currentCategory = "🚀 Logiciel Adék Solution";
-  } else if (frame < 540) {
-    currentSubtitle =
-      "Il pourrait mieux contrôler les mouvements de stock, enregistrer les pertes de produits, suivre les ventes à crédit et connaître précisément les clients qui lui doivent de l’argent.";
-    currentCategory = "⚡ Maîtrise Totale du Stock & Crédits";
-  } else {
-    currentSubtitle =
-      "Avec Adék Solution, il pourrait enfin avoir une vision claire de son stock, limiter les désaccords avec ses employés et gérer sa boutique en toute sérénité.";
-    currentCategory = "✨ Sérénité & Zéro Conflit";
-  }
-
   return (
     <div className="relative w-full h-full overflow-hidden bg-amber-50 select-none">
       {/* Background Font Texture */}
@@ -102,11 +141,12 @@ export const Scene4AdekSolution: React.FC = () => {
 
       {/* Main Software Demo Video (vente.mp4) rendered at native 1080x1916 */}
       <div className="absolute inset-0 w-full h-full">
-        <OffthreadVideo
-          src={staticFile("boutique/vente.mp4")}
-          className="w-full h-full object-cover"
-          startFrom={frame % 500}
-        />
+        <Loop durationInFrames={500}>
+          <OffthreadVideo
+            src={staticFile("boutique/vente.mp4")}
+            className="w-full h-full object-cover"
+          />
+        </Loop>
       </div>
 
       {/* Top Brand Pill Header */}
@@ -305,26 +345,8 @@ export const Scene4AdekSolution: React.FC = () => {
         )}
       </div>
 
-      {/* Tranquility Status Ribbon */}
-      <div className="absolute bottom-52 left-8 z-30 bg-amber-950/85 backdrop-blur-md text-amber-200 px-6 py-3 rounded-2xl border border-amber-400/60 shadow-xl max-w-sm flex items-center gap-3">
-        <span className="text-3xl">😴</span>
-        <div>
-          <div className="text-xs uppercase font-bold text-amber-400">Tranquillité Totale</div>
-          <div className="text-lg font-extrabold text-white">Alladji Takbir dort en paix !</div>
-        </div>
-      </div>
-
-      {/* Subtitles at bottom */}
-      <div className="absolute bottom-8 left-6 right-6 z-40">
-        <div className="px-6 py-4 rounded-3xl border-2 border-blue-400/70 bg-slate-950/92 backdrop-blur-xl text-center shadow-2xl max-w-5xl mx-auto">
-          <div className="text-amber-400 font-bold text-base uppercase tracking-wider mb-1">
-            {currentCategory}
-          </div>
-          <p className="text-2xl font-extrabold text-white leading-relaxed">
-            {currentSubtitle}
-          </p>
-        </div>
-      </div>
+      {/* Modern Viral TikTok Subtitles (Alex Hormozi style) */}
+      <ViralCaption currentFrame={frame} chunks={SCENE4_CHUNKS} bottomClass="bottom-14" />
     </div>
   );
 };

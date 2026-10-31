@@ -1,6 +1,21 @@
 import React from "react";
 import { Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
-import { SubtitleBanner } from "./SubtitleBanner";
+import { ViralCaption, CaptionChunk } from "./ViralCaption";
+
+const SCENE3_CHUNKS: CaptionChunk[] = [
+  {
+    startFrame: 5,
+    endFrame: 72,
+    before: "Résultat, on voit de",
+    highlight: "nouveaux employés",
+  },
+  {
+    startFrame: 72,
+    endFrame: 145,
+    before: "Dans la boutique",
+    highlight: "Takbir Mobiles",
+  },
+];
 
 export const Scene3NouveauxEmployes: React.FC = () => {
   const frame = useCurrentFrame();
@@ -26,19 +41,6 @@ export const Scene3NouveauxEmployes: React.FC = () => {
 
   // Gentle float motion
   const floatY = Math.sin(frame * 0.08) * 4;
-
-  // Floating celebratory badges
-  const tagSpring1 = spring({
-    frame: frame - 10,
-    fps,
-    config: { damping: 10, mass: 0.5 },
-  });
-
-  const tagSpring2 = spring({
-    frame: frame - 35,
-    fps,
-    config: { damping: 10, mass: 0.5 },
-  });
 
   // Floating sparkle particles
   const sparkleY1 = ((frame * 2.2) % 160);
@@ -133,43 +135,11 @@ export const Scene3NouveauxEmployes: React.FC = () => {
           >
             ✨
           </div>
-
-          {/* Badge 1: New smiling employees welcoming clients */}
-          {frame >= 15 && (
-            <div
-              className="absolute top-6 left-6 bg-blue-600/95 text-white font-bold text-lg px-5 py-2.5 rounded-2xl shadow-2xl border-2 border-blue-200 backdrop-blur-md flex items-center gap-2"
-              style={{
-                transform: `scale(${interpolate(tagSpring1, [0, 1], [0.6, 1])})`,
-                opacity: interpolate(tagSpring1, [0, 1], [0, 1]),
-              }}
-            >
-              <span className="text-2xl">✨</span>
-              <span>Nouvelle équipe motivée</span>
-            </div>
-          )}
-
-          {/* Badge 2: Alladji & his 3 wives in the background */}
-          {frame >= 35 && (
-            <div
-              className="absolute top-6 right-6 bg-amber-500/95 text-slate-950 font-black text-xl px-6 py-3.5 rounded-2xl shadow-2xl border-3 border-amber-100 backdrop-blur-md max-w-sm flex items-center gap-3"
-              style={{
-                transform: `scale(${interpolate(tagSpring2, [0, 1], [0.6, 1])})`,
-                opacity: interpolate(tagSpring2, [0, 1], [0, 1]),
-              }}
-            >
-              <span className="text-3xl">👑</span>
-              <span>Alladji & ses 3 épouses surveillent la boutique !</span>
-            </div>
-          )}
         </div>
       </div>
 
-      {/* 5. Subtitle Banner (TikTok bottom safe zone) */}
-      <SubtitleBanner
-        text="Résultat, on voit de nouveaux employés dans la boutique."
-        reactionNote="✨ (Souriants, Alladji derrière avec ses 3 femmes)"
-        theme="success"
-      />
+      {/* 5. Modern Viral TikTok Subtitles (Alex Hormozi style) */}
+      <ViralCaption currentFrame={frame} chunks={SCENE3_CHUNKS} />
     </div>
   );
 };

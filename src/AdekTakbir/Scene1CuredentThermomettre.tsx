@@ -1,6 +1,21 @@
 import React from "react";
 import { Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
-import { SubtitleBanner } from "./SubtitleBanner";
+import { ViralCaption, CaptionChunk } from "./ViralCaption";
+
+const SCENE1_CHUNKS: CaptionChunk[] = [
+  {
+    startFrame: 5,
+    endFrame: 68,
+    before: "Alladji Tacbir souffre d'un",
+    highlight: "seul problème",
+  },
+  {
+    startFrame: 68,
+    endFrame: 145,
+    before: "Le nombre de",
+    highlight: "ses produits !",
+  },
+];
 
 export const Scene1CuredentThermomettre: React.FC = () => {
   const frame = useCurrentFrame();
@@ -160,20 +175,8 @@ export const Scene1CuredentThermomettre: React.FC = () => {
         </div>
       </div>
 
-      {/* 5. Subtitle Banner with Character Reaction (TikTok bottom safe zone) */}
-      <SubtitleBanner
-        text={
-          frame < 70
-            ? "Alladji Tacbir souffre..."
-            : "Alladji Tacbir souffre d'un seul problème : le nombre de ses produits."
-        }
-        reactionNote={
-          frame < 70
-            ? "🦷 (Alladji avec son cure-dent pensif)"
-            : "🌡️ (Le cure-dent se transforme en thermomètre !)"
-        }
-        theme={frame < 70 ? "normal" : "danger"}
-      />
+      {/* 5. Modern Viral TikTok Subtitles (Alex Hormozi style) */}
+      <ViralCaption currentFrame={frame} chunks={SCENE1_CHUNKS} />
     </div>
   );
 };

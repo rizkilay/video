@@ -9,4 +9,5 @@ import { enableTailwind } from '@remotion/tailwind-v4';
 Config.setRspack(true);
 Config.setVideoImageFormat("jpeg");
 Config.setOverwriteOutput(true);
+Config.setTimeoutInMilliseconds(90000);
 Config.overrideBundlerConfig(enableTailwind);

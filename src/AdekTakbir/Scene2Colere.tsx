@@ -1,6 +1,30 @@
 import React from "react";
 import { Img, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
-import { SubtitleBanner } from "./SubtitleBanner";
+import { ViralCaption, CaptionChunk } from "./ViralCaption";
+
+const SCENE2_CHUNKS: CaptionChunk[] = [
+  {
+    startFrame: 8,
+    endFrame: 90,
+    before: "Quand on le voit",
+    highlight: "discuter",
+    after: "avec ses employés",
+  },
+  {
+    startFrame: 90,
+    endFrame: 175,
+    before: "Soit c'est lui qui a",
+    highlight: "raison",
+    after: "soit ce sont eux",
+  },
+  {
+    startFrame: 175,
+    endFrame: 295,
+    before: "Et cela tourne autour du",
+    highlight: "nombre réel",
+    after: "de produits",
+  },
+];
 
 export const Scene2Colere: React.FC = () => {
   const frame = useCurrentFrame();
@@ -56,10 +80,6 @@ export const Scene2Colere: React.FC = () => {
           <span className="font-extrabold text-lg tracking-wide uppercase">
             Tension • Le Mystère du Stock Réel
           </span>
-        </div>
-
-        <div className="bg-amber-500 text-slate-950 font-black text-lg px-5 py-2 rounded-full shadow-lg border border-amber-200 flex items-center gap-2">
-          <span>Dispute en cours ⚡</span>
         </div>
       </div>
 
@@ -127,12 +147,8 @@ export const Scene2Colere: React.FC = () => {
         </div>
       </div>
 
-      {/* 5. Subtitle Banner (TikTok bottom safe zone) */}
-      <SubtitleBanner
-        text="Et quand on le voit discuter de cette manière avec ses employés, c'est que soit c'est lui qui a raison, soit ce sont eux, et cela tourne autour du nombre réel de produits."
-        reactionNote="👀 (Les yeux rouges, très en colère !)"
-        theme="danger"
-      />
+      {/* Modern Viral TikTok Subtitles (Alex Hormozi style) */}
+      <ViralCaption currentFrame={frame} chunks={SCENE2_CHUNKS} />
     </div>
   );
 };
